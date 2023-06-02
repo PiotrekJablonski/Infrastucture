@@ -1,0 +1,42 @@
+jenkins:
+  credentials:
+    system:
+      domainCredentials:
+        - credentials:
+          - usernamePassword:
+            id: "artifactory"
+            username: "admin"
+            password: "admin"
+            scope: GLOBAL
+          - basicSSHUserPrivateKey:
+            username: "jenkins"
+            id: "jenkins_agent"
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "panda"
+          password: "panda"
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+      - "Overall/Administer:panda"
+  numExecutors: 0
+tool:
+  sonarRunnerInstallation:
+    installations:
+    - name: "SonarQube"
+      properties:
+      - installSource:
+        installers:
+        - sonarRunnerInstaller:
+            id: "4.0.2747"
+unclassified:
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: true
+    installations:
+    - name: "SonarQube"
+      serverUrl: "http://192.168.44.44:9000"
+      triggers:
+        skipScmCause: false
+        skipUpstreamCause: false
