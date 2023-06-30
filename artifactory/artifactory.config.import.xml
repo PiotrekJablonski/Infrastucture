@@ -3,10 +3,10 @@
     <offlineMode>false</offlineMode>
     <archiveIndexEnabled>false</archiveIndexEnabled>
     <fileUploadMaxSizeMb>100</fileUploadMaxSizeMb>
-    <revision>2</revision>
+    <revision>1</revision>
     <addons>
         <showAddonsInfo>true</showAddonsInfo>
-        <showAddonsInfoCookie>1685552623014</showAddonsInfoCookie>
+        <showAddonsInfoCookie>1687430272464</showAddonsInfoCookie>
     </addons>
     <security>
         <hideUnauthorizedResources>false</hideUnauthorizedResources>
@@ -260,11 +260,8 @@
     </downloadRedirectConfig>
     <eula>
         <accepted>true</accepted>
-        <acceptDate>2023-05-31T17:06:21.793Z</acceptDate>
+        <acceptDate>2023-06-22T10:46:12.346Z</acceptDate>
     </eula>
-    <subscription>
-        <emails/>
-    </subscription>
     <keyPairs/>
     <retentionSettings>
         <retentionPolicies/>

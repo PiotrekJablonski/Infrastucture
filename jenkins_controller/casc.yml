@@ -1,36 +1,93 @@
 jenkins:
-  credentials:
-    system:
-      domainCredentials:
-        - credentials:
-          - usernamePassword:
-            id: "artifactory"
-            username: "admin"
-            password: "admin"
-            scope: GLOBAL
-          - basicSSHUserPrivateKey:
-            username: "jenkins"
-            id: "jenkins_agent"
   securityRealm:
     local:
-      allowsSignup: false
       users:
         - id: "panda"
+          name: "panda"
           password: "panda"
+  numExecutors: 0
   authorizationStrategy:
     globalMatrix:
       permissions:
       - "Overall/Administer:panda"
-  numExecutors: 0
+  nodes:
+  - permanent:
+      labelString: "agent"
+      launcher:
+        ssh:
+          credentialsId: "jenkins1"
+          host: "192.168.44.44"
+          port: 2222
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "Agent"
+      remoteFS: "/home/jenkins/agent"
+      retentionStrategy: "always"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+        - usernamePassword:
+            id: "artifactory"
+            username: "admin"
+            password: "admin"
+            scope: GLOBAL
+        - basicSSHUserPrivateKey:
+            username: "jenkins"
+            id: "jenkins_agent"
+            privateKeySource:
+              directEntry:
+                privateKey: |
+                  -----BEGIN OPENSSH PRIVATE KEY-----
+                  b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+                  NhAAAAAwEAAQAAAYEA1MQmNALLA37aFTJ+Aq8s9egALDkj4DtS9y0OYcZMys8JDcZ6WfWr
+                  g+GJ23XlBRvLeXvqsgloeLn/+P8yzNtBjrkH/7R6N8e+B6wXrOhMvwae9+bxfy/Cc7IOj/
+                  j9yfHNwAe4jEH1Iz6A6HZozyR8OxmQI3NAIUcmeGxrutvB7NTXvTNvBn645omnaATaSvZS
+                  Fe6JDZ1NvTCKvelToJeZK2Nd5qfVnu9f4g621BzZsR9r9EZINspHO/m9L2Brt26zTSbQBQ
+                  MA25Izs1gUt2cE9arYKeyMR+7oTsth+xFYtgZMVBvUq+/VLteByykNNSIoRtAqbFVJfTXL
+                  cmW5bncunVGaF0HvzfJfeLGfhU7VCqSHEvYIg9Q5xISdEgHSPquRsN7IX0cK0Pa5fGGOXP
+                  kARt18M8PZp5AJfjghCJtew2VZG6B4KvZyzE7UuSaF1J4h/iXpRNpL/oN+x8IrUO3CJ8bW
+                  GsVXN/tlTGe89yaEDoAmhldDKA6znlmSXLjoCDh9AAAFiJKnc0qSp3NKAAAAB3NzaC1yc2
+                  EAAAGBANTEJjQCywN+2hUyfgKvLPXoACw5I+A7UvctDmHGTMrPCQ3Geln1q4Phidt15QUb
+                  y3l76rIJaHi5//j/MszbQY65B/+0ejfHvgesF6zoTL8Gnvfm8X8vwnOyDo/4/cnxzcAHuI
+                  xB9SM+gOh2aM8kfDsZkCNzQCFHJnhsa7rbwezU170zbwZ+uOaJp2gE2kr2UhXuiQ2dTb0w
+                  ir3pU6CXmStjXean1Z7vX+IOttQc2bEfa/RGSDbKRzv5vS9ga7dus00m0AUDANuSM7NYFL
+                  dnBPWq2CnsjEfu6E7LYfsRWLYGTFQb1Kvv1S7XgcspDTUiKEbQKmxVSX01y3JluW53Lp1R
+                  mhdB783yX3ixn4VO1QqkhxL2CIPUOcSEnRIB0j6rkbDeyF9HCtD2uXxhjlz5AEbdfDPD2a
+                  eQCX44IQibXsNlWRugeCr2csxO1LkmhdSeIf4l6UTaS/6DfsfCK1DtwifG1hrFVzf7ZUxn
+                  vPcmhA6AJoZXQygOs55Zkly46Ag4fQAAAAMBAAEAAAGAax5R6Y+abCkaXN+t52YQacGjDK
+                  C7+jGD5KPPgNRYZyby9Pd/M/lmn6AWSuJBKmBDAeesUnRAH7/tKow5JEAi8lsfttJDUgAD
+                  IVO4G7pcoTQRJtgjr5f4+0yi3kNKariNkOeSNzMh2tumBONQgzFoRkzpb5+fouFyceCMIG
+                  hxau4Bq+TQOeHk71RQbyM6T9FRpG8Sm0MeF2jwAQsOqmSInfqKFQ1clIcJrAMicwoPY4hh
+                  Tntv8f3G/WAPqmGN+a0GNzkuYv3E539CyAAQQqtpG47ytJ3r633WURjq+FQpn/8tKkDUs9
+                  AGRSqrnVyqnge4bv2SxkjDnGzbU5GnQS10QEUAxcVib13HIMrntCujelOSovElg86OPmbf
+                  VjxwKtfisIBSTX0fbNlGhDHKmwmndh46eoppZCzefkgNbRnEU9W7am04jxkFklc88EftqM
+                  jHGHu6d6O9trZSwEaWYiOkVPE9OgYslEZ6UDwMjk2UMtrhg+5mKQKN45SeykHhvnThAAAA
+                  wHgYaDwpCMUuAEClkh93NHz2GoIo85+QPZKxNBjF2lLghofDdRJ0XYD41xIxieXrTMehox
+                  0YAYNx2krt+yGmqBhFFnXgN4CpVjg8GrbkXJXggB8GPqQVLxyvzLzQAKSW8uEhztklhGNt
+                  G6imDUjSH/2CrPyg3GJ9b4BD3yW0WtqBa4hfCKHchiuunrrcZzl+7pwTamWihxknUxaWQe
+                  eyXrcb5ol4ahxgntE/ziAfsi4UN9dBVqdbu7KWZb7jk6+gfAAAAMEA9dQWsmkJ7P4I54pg
+                  YRRmEl5pf/gdu0QbHADOor7z/2IfVy06r1x53GpEwF55hl4rt3fEY3CICYGVtHYrPgZFbd
+                  FkBxz4ORdinL3deLaN+gbF0KebZ0HIBBsnjY2Nr2Quha+ZaHS1mFNPz9BUT2aU1/n/7msS
+                  et0vUzjkiUuxBjVT2HgABi5TDWxlG9waR5IT0neiBwFKOJQZ+wE9sEZ9lGszG0yk/5RIQm
+                  tASQ3NN7Drn4VKZGJhwuLeCqsKI+uVAAAAwQDdkdomCq1Ati3rvWDFDuVwPl0V/5G5ddl9
+                  IEc40/r90FpRrlAWWDQPq76g6chh6ZrrFbDOkxp3dpt8pWIVAChKJHSzgu6HaGkQ6cTFnX
+                  iO6ayxvzonCb4VIPyQvO7ip2vLHYioIwZKrAepciWSPKCVFlzZiDM17fYBVAqvWBvukFXz
+                  vgjtYTbpE/0tM3he4wskh1BwzDu4Q5CZ4Hpbn6MqcI+NbiO8MUdVjb986atEdptUMC9/yU
+                  ixcjOQo4h3H0kAAAAPdmFncmFudEB2YWdyYW50AQIDBA==
+                  -----END OPENSSH PRIVATE KEY-----
+            scope: GLOBAL
+
 tool:
   sonarRunnerInstallation:
     installations:
     - name: "SonarQube"
       properties:
       - installSource:
-        installers:
-        - sonarRunnerInstaller:
-            id: "4.0.2747"
+          installers:
+          - sonarRunnerInstaller:
+              id: "4.7.0.2747"
+
 unclassified:
   sonarGlobalConfiguration:
     buildWrapperEnabled: true
